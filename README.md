@@ -169,16 +169,20 @@ In order to override the defaults you need to edit/apply settings to the `rook-c
 apiVersion: v1
 data:
   config: |
-    [global]
-    mon data size warn = 100G
     [client.radosgw.gateway]
-    rgw thread pool size = 400
-    rgw num rados handles = 16
-    rgw max chunk size = 4194304
-    filestore op threads = 16
-    civetweb num_threads = 400
+    rgw frontends = beast endpoint=0.0.0.0:80
     rgw dynamic resharding = false
     rgw max objs per shard = 300000
+    [mon]
+    mon_osd_cache_size = 500
+    [osd]
+    osd_scrub_begin_hour = 23
+    osd_scrub_end_hour = 6
+    [global]
+    bluestore_block_db_size = 365072220160
+    bluestore_block_wal_size = 365072220160
+    bluestore_cache_kv_max = 1048576000
+    rocksdb_cache_size = 1048576000
 kind: ConfigMap
 metadata:
   name: rook-config-override
