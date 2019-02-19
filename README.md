@@ -189,6 +189,8 @@ metadata:
   namespace: rook
 ```
 
+* Note: This is a config from Mimic making use of the beast frontend. BlueStore sizes should be scaled based on Metadata drive sizes.
+
 This is where you'll set all your Ceph specific tuning parameters. Keep in mind that depending what you're tuning you'll have to restart the corresponding pod (ie. kubectl delete) in order for it to take the new settings. So in the case of the Rados Gateway settings you would have to restart all the rgw pods. Additionally, we scaled out the deployment of our Radows Gateway's from 1 to 8. Our object store has well over a hundred million objects and a PB of storage to give you an idea of scale.
 
 For more details on how to create accounts to access and consume data from the object store look at this document from the Rook team: https://rook.io/docs/rook/master/object.html
